@@ -12,6 +12,7 @@ public class TextBoxTests extends TestBase {
     @Test
     void TextBoxTest() {
         textBoxPage.openPage()
+                .removeBanner()
                 .setUserName("Alex")
                 .setUserEmail("alex@egorov.com")
                 .setCurrentAddress("Some street 1")

@@ -13,6 +13,7 @@ public class RegistrationWithPageObjectsTests extends TestBase {
     @Test
     void TestRegistrationFull() {
         registrationPage.openPage()
+                .removeBanner()
                 .setFirstName("Julia")
                 .setLastName("Oshmarina")
                 .setUserEmail("juffgdfgd@gmail.com")
@@ -42,6 +43,7 @@ public class RegistrationWithPageObjectsTests extends TestBase {
     @Test
     void TestRegistrationMin() {
         registrationPage.openPage()
+                .removeBanner()
                 .setFirstName("Julia")
                 .setLastName("Oshmarina")
                 .setGenter("Male")
@@ -57,6 +59,7 @@ public class RegistrationWithPageObjectsTests extends TestBase {
     @Test
     void TestRegistrationNegativLastName() {
         registrationPage.openPage()
+                .removeBanner()
                 .setLastName("Oshmarina")
                 .setGenter("Male")
                 .setUserNumber("4544263545")
