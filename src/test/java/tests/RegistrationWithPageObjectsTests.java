@@ -11,7 +11,7 @@ public class RegistrationWithPageObjectsTests extends TestBase {
     RegistrationPage registrationPage = new RegistrationPage();
 
     @Test
-    void TestRegistrationFull() {
+    void registrationFullTest() {
         registrationPage.openPage()
                 .removeBanner()
                 .setFirstName("Julia")
@@ -41,7 +41,7 @@ public class RegistrationWithPageObjectsTests extends TestBase {
     }
 
     @Test
-    void TestRegistrationMin() {
+    void registrationMinTest() {
         registrationPage.openPage()
                 .removeBanner()
                 .setFirstName("Julia")
@@ -57,7 +57,7 @@ public class RegistrationWithPageObjectsTests extends TestBase {
 
 
     @Test
-    void TestRegistrationNegativLastName() {
+    void registrationNegativLastNameTest() {
         registrationPage.openPage()
                 .removeBanner()
                 .setLastName("Oshmarina")

@@ -10,7 +10,7 @@ public class TextBoxTests extends TestBase {
     TextBoxPage textBoxPage = new TextBoxPage();
 
     @Test
-    void TextBoxTest() {
+    void textBoxTest() {
         textBoxPage.openPage()
                 .removeBanner()
                 .setUserName("Alex")
