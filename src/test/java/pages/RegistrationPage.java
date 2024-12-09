@@ -11,7 +11,7 @@ import static com.codeborne.selenide.Selenide.executeJavaScript;
 
 public class RegistrationPage {
 
-    private SelenideElement firstNameInput = $("#firstName");
+    private final SelenideElement firstNameInput = $("#firstName");
             SelenideElement lastNameInput = $("#lastName");
             SelenideElement userEmailInput = $("#userEmail");
             SelenideElement genterWrapper = $("#genterWrapper");
