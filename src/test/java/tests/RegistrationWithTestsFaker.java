@@ -4,44 +4,44 @@ package tests;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
-import utills.RandomTestDate;
+import utils.RandomTestData;
 
 
 public class RegistrationWithTestsFaker extends TestBase {
     String firstName,
             lastName,
             userEmail,
-            genter,
-            userNumber,
-            birthOfDay,
-            birthOfMoth,
-            birthOfYear,
-            subjectsInput,
-            hobbiesWrapper,
+            gender,
+            mobile,
+            birthDay,
+            birthMoth,
+            birthYear,
+            subject,
+            hobby,
             uploadPicture,
             currentAddress,
             state,
             city;
 
     RegistrationPage registrationPage = new RegistrationPage();
-    RandomTestDate randomTestDate = new RandomTestDate();
+    RandomTestData randomTestData = new RandomTestData();
 
     @BeforeEach
     void  prepareTestData() {
-      firstName = randomTestDate.getFirstName();
-      lastName = randomTestDate.getLastName();
-      userEmail = randomTestDate.getUserEmail();
-        genter = randomTestDate.getGenter();
-        userNumber = randomTestDate.getUserNumber();
-        birthOfDay = randomTestDate.getBirthOfDay();
-        birthOfMoth = randomTestDate.getBirthOfMoth();
-        birthOfYear = randomTestDate.getBirthOfYear();
-        subjectsInput = randomTestDate.getSubjectsInput();
-        hobbiesWrapper = randomTestDate.getHobbiesWrapper();
-        uploadPicture = randomTestDate.getUploadPicture();
-        currentAddress = randomTestDate.getCurrentAddress();
-        state = randomTestDate.getState();
-        city = randomTestDate.getCity();
+      firstName = randomTestData.getFirstName();
+      lastName = randomTestData.getLastName();
+      userEmail = randomTestData.getUserEmail();
+        gender = randomTestData.getGender();
+        mobile = randomTestData.getMobile();
+        birthDay = randomTestData.getBirthDay();
+        birthMoth = randomTestData.getBirthMoth();
+        birthYear = randomTestData.getBirthYear();
+        subject = randomTestData.getSubject();
+        hobby = randomTestData.getHobby();
+        uploadPicture = randomTestData.getUploadPicture();
+        currentAddress = randomTestData.getCurrentAddress();
+        state = randomTestData.getState();
+        city = randomTestData.getCity();
     }
 
 
@@ -52,11 +52,11 @@ public class RegistrationWithTestsFaker extends TestBase {
                 .setFirstName(firstName)
                 .setLastName(lastName)
                 .setUserEmail(userEmail)
-                .setGenter(genter)
-                .setUserNumber(userNumber)
-                .setDateOfBirth(birthOfDay,birthOfMoth, birthOfYear)
-                .setSubjectsInput(subjectsInput)
-                .setHobbiesWrapper(hobbiesWrapper)
+                .setGenter(gender)
+                .setUserNumber(mobile)
+                .setDateOfBirth(birthDay,birthMoth, birthYear)
+                .setSubjectsInput(subject)
+                .setHobbiesWrapper(hobby)
                 .setUploadPicture(uploadPicture)
                 .setCurrentAddress(currentAddress)
                 .setState(state)
@@ -65,11 +65,11 @@ public class RegistrationWithTestsFaker extends TestBase {
 
         registrationPage.checkResult("Student Name", firstName + " " + lastName);
         registrationPage.checkResult("Student Email", userEmail);
-        registrationPage.checkResult("Gender", genter);
-        registrationPage.checkResult("Mobile", userNumber);
-        registrationPage.checkResult("Date of Birth", birthOfDay + " "+ birthOfMoth+ ","+birthOfYear);
-        registrationPage.checkResult("Subjects", subjectsInput);
-        registrationPage.checkResult("Hobbies", hobbiesWrapper);
+        registrationPage.checkResult("Gender", gender);
+        registrationPage.checkResult("Mobile", mobile);
+        registrationPage.checkResult("Date of Birth", birthDay + " "+ birthMoth+ ","+birthYear);
+        registrationPage.checkResult("Subjects", subject);
+        registrationPage.checkResult("Hobbies", hobby);
         registrationPage.checkResult("Picture", uploadPicture);
         registrationPage.checkResult("Address", currentAddress);
         registrationPage.checkResult("State and City", state + " " + city);
@@ -81,13 +81,13 @@ public class RegistrationWithTestsFaker extends TestBase {
                 .removeBanner()
                 .setFirstName(firstName)
                 .setLastName(lastName)
-                .setGenter(genter)
-                .setUserNumber(userNumber)
+                .setGenter(gender)
+                .setUserNumber(mobile)
                 .submit();
 
         registrationPage.checkResult("Student Name", firstName + " " + lastName);
-        registrationPage.checkResult("Gender", genter);
-        registrationPage.checkResult("Mobile", userNumber);
+        registrationPage.checkResult("Gender", gender);
+        registrationPage.checkResult("Mobile", mobile);
     }
 
 
@@ -96,8 +96,8 @@ public class RegistrationWithTestsFaker extends TestBase {
         registrationPage.openPage()
                 .removeBanner()
                 .setLastName(lastName)
-                .setGenter(genter)
-                .setUserNumber(userNumber)
+                .setGenter(gender)
+                .setUserNumber(mobile)
                 .submit()
                 .checkResultNegativ();
     }
