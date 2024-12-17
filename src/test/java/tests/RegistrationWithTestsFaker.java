@@ -6,6 +6,11 @@ import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 import utils.RandomTestData;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 
 public class RegistrationWithTestsFaker extends TestBase {
     String firstName,
@@ -14,7 +19,7 @@ public class RegistrationWithTestsFaker extends TestBase {
             gender,
             mobile,
             birthDay,
-            birthMoth,
+            birthMonth,
             birthYear,
             subject,
             hobby,
@@ -25,6 +30,8 @@ public class RegistrationWithTestsFaker extends TestBase {
 
     RegistrationPage registrationPage = new RegistrationPage();
     RandomTestData randomTestData = new RandomTestData();
+    DateFormat dateFormat = new SimpleDateFormat("dd MMMMM,yyyy", Locale.UK);
+    String timeToDay = dateFormat.format(new Date());
 
     @BeforeEach
     void  prepareTestData() {
@@ -34,7 +41,7 @@ public class RegistrationWithTestsFaker extends TestBase {
         gender = randomTestData.getGender();
         mobile = randomTestData.getMobile();
         birthDay = randomTestData.getBirthDay();
-        birthMoth = randomTestData.getBirthMoth();
+        birthMonth = randomTestData.getBirthMonth();
         birthYear = randomTestData.getBirthYear();
         subject = randomTestData.getSubject();
         hobby = randomTestData.getHobby();
@@ -54,7 +61,7 @@ public class RegistrationWithTestsFaker extends TestBase {
                 .setUserEmail(userEmail)
                 .setGenter(gender)
                 .setUserNumber(mobile)
-                .setDateOfBirth(birthDay,birthMoth, birthYear)
+                .setDateOfBirth(birthDay,birthMonth, birthYear)
                 .setSubjectsInput(subject)
                 .setHobbiesWrapper(hobby)
                 .setUploadPicture(uploadPicture)
@@ -67,7 +74,7 @@ public class RegistrationWithTestsFaker extends TestBase {
         registrationPage.checkResult("Student Email", userEmail);
         registrationPage.checkResult("Gender", gender);
         registrationPage.checkResult("Mobile", mobile);
-        registrationPage.checkResult("Date of Birth", birthDay + " "+ birthMoth+ ","+birthYear);
+        registrationPage.checkResult("Date of Birth",birthDay + " "+ birthMonth+ ","+birthYear);
         registrationPage.checkResult("Subjects", subject);
         registrationPage.checkResult("Hobbies", hobby);
         registrationPage.checkResult("Picture", uploadPicture);

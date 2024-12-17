@@ -2,9 +2,11 @@ package utils;
 
 import com.github.javafaker.Faker;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
-
+import java.util.concurrent.ThreadLocalRandom;
 
 
 public class RandomTestData {
@@ -16,8 +18,8 @@ public class RandomTestData {
                 userEmail,
                 gender,
                 mobile,
-                birthDay = String.valueOf(new SimpleDateFormat("dd", Locale.UK)),
-                birthMoth,
+                birthDay,
+                birthMonth,
                 birthYear,
                 subject,
                 hobby,
@@ -41,8 +43,7 @@ public class RandomTestData {
 
 
         public String getUserEmail() {
-            Faker faker = new Faker(new Locale("en-US"));
-            userEmail = faker.internet().emailAddress();
+            userEmail = faker.internet().emailAddress(String.valueOf(Locale.ENGLISH));
             return userEmail;
          }
 
@@ -57,18 +58,34 @@ public class RandomTestData {
              return mobile;
         }
 
+        public long randomTimestamp = ThreadLocalRandom.current().nextLong(
+            new Date(0).getTime(),
+            new Date().getTime());
+
+        public RandomTestData() {
+        // Форматирование дня
+        DateFormat dayFormat = new SimpleDateFormat("dd", Locale.UK);
+        this.birthDay = dayFormat.format(new Date(randomTimestamp));
+
+        // Форматирование месяца
+        DateFormat monthFormat = new SimpleDateFormat("MMMM", Locale.UK);
+        this.birthMonth = monthFormat.format(new Date(randomTimestamp));
+
+        // Форматирование года
+        DateFormat yearFormat = new SimpleDateFormat("yyyy", Locale.UK);
+        this.birthYear = yearFormat.format(new Date(randomTimestamp));
+    }
+
+
         public String getBirthDay() {
-            birthDay = String.valueOf(faker.number().numberBetween(4,28));
             return birthDay;
         }
 
-        public String getBirthMoth() {
-            birthMoth = faker.options().option("January","February","March","April","May","June", "July", "August", "September", "October", "November", "December");
-            return birthMoth;
+        public String getBirthMonth() {
+            return birthMonth;
         }
 
          public String getBirthYear() {
-             birthYear = String.valueOf(faker.number().numberBetween(1994,2023));
              return birthYear;
         }
 
