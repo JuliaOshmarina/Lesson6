@@ -4,8 +4,7 @@ import com.github.javafaker.Faker;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 
@@ -27,6 +26,7 @@ public class RandomTestData {
                 currentAddress,
                 state,
                 city;
+
 
 
 
@@ -109,26 +109,33 @@ public class RandomTestData {
         return currentAddress;
     }
 
+    private final String[] states = new String[]{"NCR", "Uttar Pradesh", "Haryana", "Rajasthan"};
+
+    private Map<String, List<String>> citiesMap = new HashMap<>() {{
+        put("NCR", List.of("Delhi", "Gurgaon", "Noida"));
+        put("Uttar Pradesh", List.of("Agra", "Lucknow", "Merrut"));
+        put("Haryana", List.of("Karnal", "Panipat"));
+        put("Rajasthan", List.of("Jaipur", "Jaiselmer"));
+    }};
+
     public String getState() {
-        state = faker.options().option("NCR","Uttar Pradesh","Haryana","Rajasthan");
+        int randomNumber = getRandomNumber(0, states.length);
+        state = states[randomNumber];
         return state;
     }
 
-    public String getCity() {
-        switch (state) {
-            case "NCR":
-                return city = faker.options().option("Delhi", "Gurgaon", "Noida");
-            case "Uttar Pradesh":
-                return city = faker.options().option("Agra", "Lucknow", "Merrut");
-            case "Haryana":
-                return city =  faker.options().option("Karnal", "Panipat");
-            case "Rajasthan":
-                return city =  faker.options().option("Jaipur", "Jaiselmer");
-            default:
-                return null;
+    public String getCity(String state) {
+        List<String> cities = citiesMap.get(state);
+        if (cities != null && !cities.isEmpty()) {
+            int randomNumber = getRandomNumber(0, cities.size());
+            city = cities.get(randomNumber);
+            return city;
         }
+        return null;
     }
-
+    private int getRandomNumber(int numberStart, int numberEnd) {
+        return faker.number().numberBetween(numberStart, numberEnd);
+    }
 }
 
 

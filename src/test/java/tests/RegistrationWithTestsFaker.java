@@ -48,20 +48,20 @@ public class RegistrationWithTestsFaker extends TestBase {
         uploadPicture = randomTestData.getUploadPicture();
         currentAddress = randomTestData.getCurrentAddress();
         state = randomTestData.getState();
-        city = randomTestData.getCity();
+        city = randomTestData.getCity(state);
     }
 
 
     @Test
     void registrationFullTest() {
-        registrationPage.openPage()
+        RegistrationPage submit = registrationPage.openPage()
                 .removeBanner()
                 .setFirstName(firstName)
                 .setLastName(lastName)
                 .setUserEmail(userEmail)
                 .setGenter(gender)
                 .setUserNumber(mobile)
-                .setDateOfBirth(birthDay,birthMonth, birthYear)
+                .setDateOfBirth(birthDay, birthMonth, birthYear)
                 .setSubjectsInput(subject)
                 .setHobbiesWrapper(hobby)
                 .setUploadPicture(uploadPicture)
